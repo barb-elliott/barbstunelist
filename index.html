@@ -1,0 +1,2848 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       
+<script>   
+     
+//SORT    
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("myTable");
+      switching = true;
+      //Set the sorting direction to ascending:
+      dir = "asc"; 
+      /*Make a loop that will continue until
+      no switching has been done:*/
+      while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+          //start by saying there should be no switching:
+          shouldSwitch = false;
+          /*Get the two elements you want to compare,
+          one from current row and one from the next:*/
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+          /*check if the two rows should switch place,
+          based on the direction, asc or desc:*/
+          if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
+          } else if (dir == "desc") {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          /*If a switch has been marked, make the switch
+          and mark that a switch has been done:*/
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          //Each time a switch is done, increase this count by 1:
+          switchcount ++;      
+        } else {
+          /*If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again.*/
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+    }
+//SEARCH: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_table  
+</script>          
+<style> 
+    h1 {
+    font-family: Calibri, sans-serif;
+    text-align: center;
+    color: #666B5E;
+    }
+    table {
+    font-family: Calibri, sans-serif; 
+    font-size: 12px;    
+    border-collapse: collapse;
+    width: 100%;
+    }
+    table, th, td {
+    border-bottom: 1px solid;
+    border-color: #b6c4b2;
+    }
+    th {
+    background-color: #879E82; 
+    font-size: 16px;
+    color: floralwhite;
+    text-align: left;
+    }
+    td {
+    color: #414d3e;
+    }
+    tbody>tr>:nth-child(1){
+    text-align: center;
+    min-width: 50px;
+    }
+    tbody>tr>:nth-child(2){
+    width:200px;
+    }
+    tbody>tr>:nth-child(3){
+    width:200px;
+    }
+    tbody>tr>:nth-child(4){
+    width: 150px;
+    }
+    tbody>tr>:nth-child(5){
+    width: 150;
+    text-align: center;
+    }
+    tbody>tr>:nth-child(6){
+    width: 200px;
+    text-align: center;
+    }
+    tr:nth-child(even) {
+    background-color: #ced7cb;
+    }
+    audio {
+    width: 300px;
+    height: 25px;
+    }
+
+    audio::-webkit-media-controls-panel {
+    background-color: #e6ebe5;
+    color: #e6ebe5;
+    }
+    
+    
+    #thSort {
+    cursor: pointer;
+    }
+    #Mp3Heading {
+        text-align: center;
+    }
+</style>
+       <title>Tunes</title>
+   </head>    
+   <body>       
+      <h1 id="heading">Barb's Nifty Tune List</h1>
+      <table id="myTable">          
+         <th id="thSort" onclick="sortTable(0)">Key</th>
+         <th id="thSort" onclick="sortTable(1)">Tune</th>
+         <th>Notes</th>
+         <th id="Mp3Heading">Mp3</th>
+         <th>Chart</th>
+         <th id="thSort" onclick="sortTable(5)">Source</th>
+         <th id="thSort" onclick="sortTable(6)">Status</th>
+         <tr>
+            <td>C</td>
+            <td>Acrobat's New Trick</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Acrobat's New Trick.mp3">
+               </audio>                       
+            </td>
+            <td> </td>
+            <td>Frank Blade</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Across The Sea</td>
+            <td>No G - long pause</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Across the Sea.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Isham Monday</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Altamont</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Altamont.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>John Lusk</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Ball and Chain Hornpipe</td>
+            <td></td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Ball & Chain Hornpipe.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Kenny Baker</td>
+            <td>Meh</td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Belle Of Lexington</td>
+            <td>Both) DDDA |DGAD</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Belle Of Lexington.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Emmett Lundy</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Benny Ate A Woodchuck</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Benny Ate A Woodchuck.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Henry Lovell</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Big Dipper</td>
+            <td>B) Goes to the G first time and D second time</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Big Dipper.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/Big Dipper.JPEG" 
+                target="popup"
+                onclick="window.open('Charts/Big Dipper.JPEG','popup','width=600,height=600'); return false;">Chart</a>
+             </td>
+            <td>David Cahn</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Big Sciota</td>
+            <td>This might be wrong?
+                <br>A) All G until C/D/G
+                <br>B) G D D Em | Em C D G
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Big Scioty.mp3">
+               </audio>
+            </td>
+            <td>
+                <a href="Charts/Big Scioty.png" 
+                   target="popup"
+                   onclick="window.open('Charts/Big Scioty.png','popup','width=600,height=600'); return false;">Chart</a>
+             </td>
+            <td>Burl Hammon</td>
+            <td>Figure out why I get it wrong</td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Big Tennessee</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Big Tennessee.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>David Hamblen</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Bill Cheatum</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Bill Cheatham.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Eck Robertson</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Billy In The Low Ground (Lowe Stokes... not the usual one)</td>
+            <td>CCGC | CCGCC<br>
+               CCFG | CCGCC
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Billy In The Low Ground.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Lowe Stokes</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Billy in the Lowland</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Billy In The Lowland.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Henry Reed</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Blue Eagle</td>
+            <td>B) Has Bm (or not)</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Blue Eagle.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Vernon Riddle</td>
+            <td>Find recording</td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Bone Yard</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Bone Yard.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Gary Harrison</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Booth</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Booth.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Marcus Martin</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Bound to Have a Little Fun</td>
+            <td>Pretty sure this is wrong?
+                <br>B) G C G Am/C G D/G</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Bound%20to%20Have%20a%20Little%20Fun.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Gusty Wallace</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Bull Of The Woods</td>
+            <td>A) Go to C sooner as per Jones
+             <br>7th measure of the A part is a D</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Bull of the Woods.mp3">
+               </audio>
+            </td>
+            <td>
+             <a href="Charts/BullOfTheWoods.png" 
+                target="popup"
+                onclick="window.open('Charts/BullOfTheWoods.png ','popup','width=600,height=600'); return false;">Chart</a>
+             </td>
+            <td>James Bryan</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Bumblebee In A Jug</td>
+            <td>B) C F C G/C |<br>
+                C Am C G/C<br>
+               Sometimes played in D
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Bumblebee In A Jug.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>George Hawkins</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Calico Corn</td>
+            <td>A) Has a G</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Calico Corn.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/CalicosCorn.png" 
+                target="popup"
+                onclick="window.open('Charts/CalicosCorn.png ','popup','width=600,height=600'); return false;">Chart</a>
+            </td>
+            <td>Chirps Smith from Gib Ingram</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Camp Chase</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Camp Chase.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Wilson Douglas</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Catlettsburg</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Catlettsburg.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Ed Haley</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Chadwell's Station</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Chadwell's Station.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Porter Hamblen</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Cherry River Rag</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Cherry River Rag.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Ed Haley</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Chicken Under The Wash Tub</td>
+            <td>B) D to C</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Chicken Under the Washtub.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Vivian WilliamS</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Cleveland's March To the White House</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Cleveland's March to the White House.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Don't know</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Coker Creek</td>
+            <td>B) G G Em G | C  G G D D G G</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Coker Creek.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/CokerCreek.png " 
+                target="popup"
+                onclick="window.open('Charts/CokerCreek.png','popup','width=600,height=600'); return false;">Chart</a>
+            </td>
+            <td>Carthy Sisco</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Cold Winter Night</td>
+            <td>Are there any Ds?
+                <br>A and B)
+                <br>Em Em G G |<br> 
+                Em Em Em B7 (1/2 measure)<br> Em Em 
+               <br>C) Em Em Em B7 | 
+                <br>B7 B7 B7 Em Em 
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Cold Winter Night.mp3">
+               </audio>
+            </td>
+            <td>
+                <a href="Charts/Cold Winter Night.png" 
+                target="popup"
+                onclick="window.open('Charts/Cold Winter Night.png','popup','width=600,height=600'); return false;">Chart</a>
+            <td>Kenny Baker via Carthy Sisco</td>
+            <td>Learn</td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Coleman's March</td>
+            <td>Learn from audio</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Coleman's March.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Jon Bekoff	</td>
+            <td>Learn</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Colored Aristocracy</td>
+            <td>Some play E, others play Em</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Colored Aristocracy.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Coming Down From Denver</td>
+            <td>B) B7</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Coming Down From Denver.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Bob Walters</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Cowhide Boots</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Cowhide Boots.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Lyman Enloe</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Cuckoo's Nest</td>
+            <td>Paul likes my C chord. Does it go from C to A? 
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Cuckoo's Nest.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Don't know</td>
+            <td>Love</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Cuffy</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Cuffy.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>N.H. Mills</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>B-flat</td>
+            <td>Dailey's Reel</td>
+            <td>Capo up three and play in G shape</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Dailey's Reel.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Kenny Baker</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Dixie Hoedown</td>
+            <td>B1) G Bm Am</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Dixie Hoedown.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Jessy McReynolds</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Down The Mountain</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Down the Mountain.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Sheila Stone</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Ducks Eyeball</td>
+            <td>B) Em and B7 | G D(or G?) C D </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Duck's Eyeball.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Lauchlin Shaw</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>East Tennessee Blues</td>
+            <td>B) F for 3rd and 4th measures as per Molly and David</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/East Tennessee Blues.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Charlie Bowman</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Ebb and Flow</td>
+            <td>A) <br>
+                D D D D D G D D A A |<br>
+               D D D D D G A A D D<br>
+               B)<br>
+                D D D G G D D D A A | <br>
+               D D D G G D D A A D D
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Ebb and Flow.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Carl Jones</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Ebenezer</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Ebenezer.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Henry Reed</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Elk River Blues </td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Elk River Blues.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Ernie Carpenter</td>
+            <td>Love</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Evening Shade</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Evening Shade.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Arthur Smith</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Fairwell Trion</td>
+            <td>B) C C C F F F F F F C
+               B) C C C F F F F F G C (Carl Jones) 
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Farewell Trion.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>James Bryan</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Fisher's Hornpipe</td>
+            <td>Some people play a 3rd part</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Fisher's Hornpipe.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Don't know</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Five Miles From Town</td>
+            <td>Meditative</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Five Miles from Town.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Clyde Davenport</td>
+            <td>Love</td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Flannery's Dream</td>
+            <td>All A - one note samba</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Flannery's Dream.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Santford Kelly</td>
+            <td>Learn</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Flowers Of Edenborough Regular</td>
+            <td>B) Ends G D G? Or B goes GCGD? </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Flowers of Edinburgh.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Don't know</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Flowers Of Edenboure Art</td>
+            <td>A) G D C Em G C Am D (long) G |
+               G Bm C Em G C Am D (long) G
+               B) G (long) Em Em A C G Bm G D G
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Flowers Of Edinburgh Art.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Art Galbraith</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Frankie</td>
+            <td>A) A/E right away
+               B) G then D
+               There's a Kitty Puss version with different B part
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Frankie.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Buddy Thomas</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Gibson's</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Gibson's.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Eryn Marshal</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Gilsaw</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Gilsaw.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Golden Ticket</td>
+            <td>Learn Eric's version</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Golden Ticket.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Eric Merrill</td>
+            <td>Learn</td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Gone Indian</td>
+            <td>Goes to the G when you least expect it every time</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Gone Indian.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Bob Wills</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Goodbye Girls I’M Going To Boston</td>
+            <td>B) End goes g e…?</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Goodbye Girls I'm Gone To Boston.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Art Stamper</td>
+            <td>Love</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Grassy Creek</td>
+            <td>Stays on the G for the feet first beat is a second measure </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Grassy Creek.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Don't know</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>E</td>
+            <td>Green Sleeve</td>
+            <td>A) Has Em D
+               B) Has E G
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Green Sleeve.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Gary Harrison</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Green Willis</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Green Willis.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Don't know</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Half Past Four</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Half Past Four.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Ed Haley</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Hamsters In The Pantry </td>
+            <td>A) D Em D</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Hamsters in the pantry.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>John Reishman</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Hell Among the Yearlings</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Hell Among the Yearlings.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Uncle Dick Hutchison</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Hell and Grace</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Hell and Grace.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Eric Merrill</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Henry King's Reel</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Henry King's Reel.mp3">
+               </audio>
+            </td>
+            <td>
+                
+            </td>
+            <td>Trevor Stuart</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Here Comes Jack w/a Fiddle on His Back</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Here Comes Jack With a Fiddle on His Back.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Herman's Hornpipe</td>
+            <td></td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Herman's Hornpipe.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Herman Johnson</td>
+            <td>Play often</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Hickory</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Hickory.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Hog Skin</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Hog Skin.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>I'm Gonna Have My Moustache Blacked</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/I'm Gonna Have My Mustache Blacked.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Taylor Kimball</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Indian Ate The Woodchuck</td>
+            <td>Learn from audio</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Indian Ate The Woodchuck Salyer.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>John Salyer</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Indian Ate The Woodchuck</td>
+            <td>Learn from audio</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Indian Ate The Woodchuck.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Ed Haley</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Jack Wilson</td>
+            <td>I want to stay on the 4 chord a beat too long.</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Jack Wilson.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/Jack Wilson.png" 
+target="popup"
+onclick="window.open('Charts/Jack Wilson.png','popup','width=600,height=600'); return false;">Chart</a>
+</td>
+            <td>John Salyer</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Jaybird (The)</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Jaybird.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>John Riley the Shepard</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/John Riley The Shepherd.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Art Stamper</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Johnny Had a Wedding Phoebe Didn't Go</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Johnny Had a Wedding, Phoebe Wouldn't Go.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>B-flat</td>
+            <td>Johnny June Reel</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Johnny June Reel.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Kenny Baker</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Jonesboro</td>
+            <td>No 4 chord </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Jonesboro.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Oscar (Red) Wilson</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>June Apple</td>
+            <td>?B) A and G with a D</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/June Apple.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Kitchen Girl</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Kitchen Girl.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Henry Reed</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Kohler's Reel</td>
+            <td>Find recording</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/no recording">
+               </audio>
+            </td>
+            <td>
+                
+            </td>
+            <td>1000 Fiddle Tunes</td>
+            <td>Love</td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>L&amp;N Rag</td>
+            <td>A) D 
+               B) D and E7
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/L and N Rag.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>J.D. Dillingham</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Lantern in the Ditch</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Lantern In The Ditch.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Bob Walters</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Lee's Retreat From Gettysburg</td>
+            <td>Em not E</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/no recording">
+               </audio>
+            </td>
+            <td>
+            </td>
+            <td>?Find recording</td>
+            <td>Love</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Liberty </td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Liberty.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Little Black Mustache</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Little Black Moustache.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Little Pine Siskin</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Little Pine Siskin.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>John Reischman</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>Am</td>
+            <td>Little Rose</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Little Rose.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Wilson Douglas</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Little Sadie</td>
+            <td>Starts on an A</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/no recording">
+               </audio>
+            </td>
+            <td>
+            </td>
+            <td>No source</td>
+            <td>?Find recording</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Liza Jane</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Liza Jane.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Lookout Blues</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Lookout Blues.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>James Bryan</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Lost Girl</td>
+            <td>B) Play G C D</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Lost Girl.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Lost Hornpipe</td>
+            <td>B1) D G D A</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Lost Hornpipe.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Louie's First Tune</td>
+            <td>Quebecois</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Louie's First Tune.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Lovely Jane</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Lovely Jane.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/Lovely Jane.png" 
+target="popup"
+onclick="window.open('Charts/Lovely Jane.png,'popup','width=600,height=600'); return false;">Chart</a>
+
+             </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Macguire and Patterson Waltz</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Maguire and Paterson.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Maggots in the Sheep Hide</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Maggots in the Sheep Hide.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Kelly Purdue</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Maysville</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Maysville.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>JP Fraley</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Meg Grey</td>
+            <td>Form is A B A B C C <br>
+                A) Em Em G A Em Em G A <br>
+                B) A A G G A A G A <br>
+                C) G G G Em
+             
+             </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Meg Gray.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Mike In The Wilderness</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Mike In The Wilderness.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>John Salyer</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Minnie Put Your Kettle On</td>
+            <td>Paul likes a G in the A-part but not in the B-part</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Minnie Put Your Kettle On.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Hutchinson </td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Mississippi Palisades</td>
+            <td>No A in either part as per Bill Meyer at The Couth - But Kate likes it </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Mississippi Palisades.mp3">
+               </audio>
+            </td>
+            <td>
+                
+            </td>
+            <td>Chirps Smith</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Mississippi Snagboat</td>
+            <td>part 2 -  does it stay on the D or go d a d etc</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Mississippi Snagboat.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/Mississippi Snagboat.png" 
+target="popup"
+onclick="window.open('Charts/Mississippi Snagboat.png,'popup','width=600,height=600'); return false;">Chart</a>
+</td>
+            <td>Bert Payne 1873-1964 KS via Trisha Spencer</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A minor</td>
+            <td>Monroe's Farewell To Long Hollow </td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Monroe's Farewell to Long Hollow.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>James Bryan</td>
+            <td>Love</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Moon Behind The Hill</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Moon Behind the Hill.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Moonlight</td>
+            <td>3 parts - All have same chords </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Moonlight.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Moses Hoe the Corn</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Moses Hoe the Corn.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Nail That Catfish To A Tree</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Nail That Catfish To A Tree.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Steve Rosen</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>New 5 Cent Piece (Buffalo Nickel)</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/New 5 cent piece.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>B-flat</td>
+            <td>New Camptown Races</td>
+            <td>Capo up three and play in G shape</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/New Camptown Races.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Frank Wakefield</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>North Carolina Breakdown</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/North Carolina Breakdown.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Oklahoma News</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Oklahoma News.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Old Beach Leave</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Old Beech Leaves.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Sid Hudnall</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Old Parnell Reel</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Old Parnell Reel.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Bob Walters</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Old Virginia Reel</td>
+            <td>Learn from audio</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Old Virginia Reel.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td>Learn</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Ora Lee</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Ora Lee.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Over the Waterfall</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Over the Waterfall.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Page 16</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Page 16.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Peter Francisco</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Peter Francisco.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Pleasure House Rag</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Pleasure House Rag.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Porter's Reel</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Porter's Reel.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Possum's Tail Is Bare </td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Possum's Tail Is Bare.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Preaching to the Chickens</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Preaching to the Chickens.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Margi JOy</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Railroad Through The Rocky Mountains</td>
+            <td>I had a hard time realizing that the B-part had a G</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Railroad Through The Rocky Mountains.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Red Haired Boy</td>
+            <td>?Find Audio</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/no recording">
+               </audio>
+            </td>
+            <td>
+                
+            </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Richmond</td>
+            <td>Stay on the D for two measures near the end of the a part</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Richmond.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Road to Malvern</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Road to Malvern.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Jim Childress</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Roaring River</td>
+            <td>No C</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Roaring River.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Rocky Road to Jordan</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Rocky Road to Jordan.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Dwight Lamb</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Root Hog Or Die</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Root Hog Or Die.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Rose In The Mountain</td>
+            <td>B) D 3.5 measures then G! </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Rose in the Mountain.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>John Salyer</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Round The Horn</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Round The Horn.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/Round the Horn.png" 
+target="popup"
+onclick="window.open('Charts/Round the Horn.png,'popup','width=600,height=600'); return false;">Chart</a>
+</td>
+            <td>Jay Ungar</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Run Down Boot</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Run Down Boot.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Running Thru the Rain to Keep Your Hair Dry</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Running Through the Rain to Keep Your Hair Dry.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Sadie at the Backdoor</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Sadie At The Back Door.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Jere Canote</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Sail Away Ladies (JP Fraley)</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Sail Away Ladies.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>JP Fraley</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Sal's Got Mud Between Her Toes</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Sal's Got Mud between Her Toes.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Salty Coffee</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Salty Coffee.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Sam and Elzie</td>
+            <td>?Make recording... <br>what I found was copyright protected</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Copyright protected">
+               </audio>
+            </td>
+            <td>
+            </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Sam Hill</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Sam Hill.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>James Bryan</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Sand Hill</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Sand Hill.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Vivian Williams</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Sara Armstrong's Tune</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Sara Armstrong.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Sarah Armstrong</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Setauket</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Setauket.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Sheep and Goats Go To Pasture</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Sheepsand Goats Go To Pasture.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>B-flat</td>
+            <td>Shelburne Reel</td>
+            <td>4 parts A: rocks B: normal C: g e am d D: goes to key of D</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Shelburne Reel.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Shenandoah Falls</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Shenandoah Falls.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Pete Southerland</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Shortenin' Bread</td>
+            <td>4 parts - 3rd goes G C E A D D G</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Shortenin' Bread.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Doc Roberts</td>
+            <td>Love</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Simpson County</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Simpson County.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Soapsuds Over the Fence</td>
+            <td>Learn from the audio</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Soapsuds Over the Fence.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>James Bryan</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Somebody's Buried in the Graveyard</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Somebody's Buried In The Graveyard.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Street Butler</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Speed The Plow</td>
+            <td>Extra beats in the middle of the second B part </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Speed the Plow.mp3">
+               </audio>
+            </td>
+            <td>
+                
+            </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Spotted Pony</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Spotted Pony.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Springfield</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Springfield.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Erynn Marshall</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Stoney Fork</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Stoney Fork.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>James Bryan</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Strumming on My Banjo</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Strumming On My Banjo.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>J.P. Fraley</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Sugar In The Gourd</td>
+            <td>A) stays on A for a long time
+               B)  A E A E A ???
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Sugar In The Gourd.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Sweeping The Town</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Sweeping the Town.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>F</td>
+            <td>Taylor's Quick Step</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Taylor's Quickstep.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Leonard Rutherford</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Texas (aka NewCastle)</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Texas.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/Texas.png" 
+                target="popup"
+                onclick="window.open('Charts/Texas.png,'popup','width=600,height=600'); return false;">Chart</a>
+            </td>
+            <td>Henry Reed</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>The Hawk Is A Mule</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/The Hawk Is a Mule.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Andrew Marlin</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>The Long Tom</td>
+            <td>B) Use E shape high up for B-flat</td>
+            <td>
+               <audio class="myAudio" controls>
+                   <source src="Music/The Long Tom.mp3">
+               </audio>
+            </td>
+            <td>
+                
+            </td>
+            <td>Mike Eisler</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>Gm</td>
+            <td>The North Shore</td>
+            <td>Capo on three and play out of Em (G) shape</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/The North Shore.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>John reichman</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Scolding Wife</td>
+            <td>Three parts
+               A) F
+               B) Am 
+            </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Scolding Wife.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Pauls version taken from Benny Thomason and J.P.</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Tipping Back the Corn</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Tippin' Back the Corn.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Jordon Wankoff via Chirps Smith</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Turkey in the Straw (Minor)</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Turkey in the Straw.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Twin Sisters</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Twin Sisters.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Utah Trail March</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Utah Trail March.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td>Learn</td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Walk Chalk Chicken With A Necktie On</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Walk Chalk Chicken With A Necktie On.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Melvin Wine</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Walk Old Shoe Heel Come a Draggin'</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Walk Old Shoe, Heel Come a Draggin'.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Waynesboro</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Waynesboro.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Weedwalker</td>
+            <td>B) Has Bm D Bm D G D etc</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Weedwalker.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/Weedwalker.png" 
+target="popup"
+onclick="window.open('Charts/Weedwalker.png,'popup','width=600,height=600'); return false;">Chart</a>
+</td>
+            <td>Noah VanNorstrand</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Weeping Lady (The)</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Weeping Lady.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>West Virginia Rag</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/West Virginia Rag.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Henry Reed</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Westfork Gals </td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/West Fork Gals.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Whiteface</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Whiteface.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Wild Horses at Stoney Point</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Wild Horses At Stoney Point.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Willow On The Lake</td>
+            <td>Where are the Ds and Cs?</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Willow on the Lake.mp3">
+               </audio>
+            </td>
+            <td><a href="Charts/Willow on the Lake.png" 
+target="popup"
+onclick="window.open('Charts/Willow on the Lake.png,'popup','width=600,height=600'); return false;">Chart</a>
+</td>
+            <td>Rayna Gellert</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Winder Slide</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Winder Slide.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Joe LaRose</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>B-flat</td>
+            <td>Windy City Rag</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Windy City Rag.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>No source</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Wooden Nickel</td>
+            <td>b part first time through ends on A but I didn’t hear that. According to Judy might have been too many other guitars but might be a clue to my poor hearing (might just be a matter of choice though)</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Copyright protected">
+               </audio>
+            </td>
+            <td>
+            </td>
+            <td>Mark Gapanoff</td>
+            <td>?Make recording... <br> copyright protected</td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Yellow Barber</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Yellow Barber.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>Buddy Thomas</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Yellow Gals</td>
+            <td> </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/Yellow Gals.mp3">
+               </audio>
+            </td>
+            <td> </td>
+            <td>James Bryan</td>
+            <td> </td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Yellow Rose Of Texas</td>
+            <td>A) D D D D G A A D
+             <br>B) D D A A A D 
+             </td>
+            <td>
+               <audio class="myAudio" controls>
+                   <source src="Music/Yellow Rose Of Texas.mp3">
+               </audio>
+            </td>
+            <td>
+            </td>
+            <td>Pat Kingery</td>
+            <td> </td>
+         </tr>
+
+         <tr>
+            <td>?</td>
+            <td>Why do a Preacher Love Chickens So</td>
+            <td></td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Gary Harrison</td>
+            <td></td>
+         </tr>
+
+         <tr>
+            <td>A?</td>
+            <td>Fine Times at Our House</td>
+            <td>Notes</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Source</td>
+            <td></td>
+         </tr>
+
+         <tr>
+            <td>C</td>
+            <td>Forty Drops</td>
+            <td>Forth part has C C7 F Fm G C<br>Loads of variations of this tune</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>James Bryan sheet music</td>
+            <td></td>
+         </tr>
+
+         <tr>
+            <td>D</td>
+            <td>Deer Walk</td>
+            <td> B Part: goes to A! With a c second base note</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Doc Roberts</td>
+            <td></td>
+         </tr>
+
+         <tr>
+            <td>A</td>
+            <td>Bobtail Mule or Buck and Dunn</td>
+            <td>Notes</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Rayna</td>
+            <td>?</td>
+         </tr>
+
+         <tr>
+            <td>A Model</td>
+            <td>Squirrel Hunter</td>
+            <td>A) Em G<br>B)E </td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Ed Haley with changes by Pete Martin</td>
+            <td></td>
+         </tr>
+          
+        <tr>
+            <td>G</td>
+            <td>Blackberry Blossom (Garfield's)</td>
+            <td>G to F</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Source</td>
+            <td>Status</td>
+         </tr>
+
+         <tr>
+            <td>?</td>
+            <td>Gilda's</td>
+            <td>Might have an A or E as well as a G according to Kate</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Source</td>
+            <td>Status</td>
+         </tr>
+         <tr>
+            <td>A</td>
+            <td>Step Town</td>
+            <td>B) D Bm</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>J.P. Fraley</td>
+            <td>Status</td>
+         </tr>
+         <tr>
+            <td>?</td>
+            <td>Johnsboro</td>
+            <td>No 4 chord</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Source</td>
+            <td>Status</td>
+         </tr>
+         <tr>
+            <td>C</td>
+            <td>Old Spot</td>
+            <td>Notes</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Berry Scholtz</td>
+            <td>Status</td>
+         </tr> 
+         <tr>
+            <td>D</td>
+            <td>Jaybird</td>
+            <td>Different from The Jaybird</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>No source</td>
+            <td>?</td>
+         </tr>  
+        <tr>
+            <td>G</td>
+            <td>Indian Killed a Woodcock</td>
+            <td>Notes</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Kenny Baker</td>
+            <td>Status</td>
+         </tr>
+
+         <tr>
+            <td>G</td>
+            <td>Sail Away Ladies (Kenny)</td>
+            <td>Notes</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Kenny Baker</td>
+            <td>Status</td>
+         </tr>
+
+         <tr>
+            <td>D</td>
+            <td>Willow Creek</td>
+            <td>Notes</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>James Bryan</td>
+            <td>Status</td>
+         </tr>
+         <tr>
+            <td>G</td>
+            <td>Maggie Meade</td>
+            <td>Notes</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>J.P. Fraley</td>
+            <td>Status</td>
+         </tr>
+         <tr>
+            <td>D</td>
+            <td>Make a Little Boat</td>
+            <td>Notes</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Kenny Baker</td>
+            <td>Status</td>
+         </tr>
+          
+<!--
+         <tr>
+            <td>Key</td>
+            <td>Name</td>
+            <td>Notes</td>
+            <td>
+               <audio class="myAudio" controls>
+                  <source src="Music/">
+               </audio>
+            </td>
+            <td>Chart</td>
+            <td>Source</td>
+            <td>Status</td>
+         </tr>
+-->
+      </table> 
+       <h2>Thoughts</h2>
+       <p>When a phrase starts on the fourth degree of a scale I wrongly might assume I should play a four chord </p>
+        <script>
+            const myAudio = document.getElementsByClassName ("myAudio");
+            for (let i=0; i<myAudio.length; i++)
+            //"pause" is the type of event... it tells the listener to listen for "pause". (event) is the listener that receives the notification that one of the items called the pause event. myAudio[i] is the EventTarget... the thing that called the pause() method.
+            myAudio[i].addEventListener("pause", (event) => {
+                event.target.currentTime = 0;
+            })    
+       </script>         
+   </body>
+</html>
